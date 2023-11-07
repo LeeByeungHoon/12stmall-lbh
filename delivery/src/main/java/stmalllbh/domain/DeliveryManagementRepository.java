@@ -1,5 +1,7 @@
 package stmalllbh.domain;
 
+import java.util.Optional;
+
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import stmalllbh.domain.*;
@@ -10,4 +12,7 @@ import stmalllbh.domain.*;
     path = "deliveryManagements"
 )
 public interface DeliveryManagementRepository
-    extends PagingAndSortingRepository<DeliveryManagement, Long> {}
+    extends PagingAndSortingRepository<DeliveryManagement, Long> {
+
+        Optional<DeliveryManagement> findByOrderId(Long id);
+    }

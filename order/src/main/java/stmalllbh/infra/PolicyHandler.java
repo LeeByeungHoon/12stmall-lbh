@@ -89,7 +89,7 @@ public class PolicyHandler {
 
     @StreamListener(
         value = KafkaProcessor.INPUT,
-        condition = "headers['type']=='StockIncresed'"
+        condition = "headers['type']=='StockDecresed'"
     )
     public void wheneverStockIncresed_NotifyToWaitingCustomer(
         @Payload StockIncresed stockIncresed

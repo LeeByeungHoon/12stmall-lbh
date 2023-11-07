@@ -28,6 +28,9 @@ public class ProductManagement {
     public void onPostUpdate() {
         StockIncresed stockIncresed = new StockIncresed(this);
         stockIncresed.publishAfterCommit();
+
+        StockDecresed stockDecresed = new StockDecresed(this);
+        stockDecresed.publishAfterCommit();
     }
 
     public static ProductManagementRepository repository() {
@@ -38,7 +41,7 @@ public class ProductManagement {
     }
 
     //<<< Clean Arch / Port Method
-    public static void decreseStock(DeliveryCompleted deliveryCompleted) {
+    public static void decreseStock(DeliveryStarted deliveryStarted) {
         //implement business logic here:
 
         /** Example 1:  new item 
@@ -46,17 +49,13 @@ public class ProductManagement {
         repository().save(productManagement);
 
         */
-
-        /** Example 2:  finding and process
         
-        repository().findById(deliveryCompleted.get???()).ifPresent(productManagement->{
+        repository().findById(deliveryStarted.getProductId()).ifPresent(productManagement->{
             
-            productManagement // do something
+            productManagement.setStock(productManagement.getStock()- deliveryStarted.getQty());
             repository().save(productManagement);
-
-
          });
-        */
+        
 
     }
 

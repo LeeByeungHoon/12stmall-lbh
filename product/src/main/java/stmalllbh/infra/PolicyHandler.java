@@ -25,12 +25,12 @@ public class PolicyHandler {
 
     @StreamListener(
         value = KafkaProcessor.INPUT,
-        condition = "headers['type']=='DeliveryCompleted'"
+        condition = "headers['type']=='DeliveryStarted'"
     )
     public void wheneverDeliveryCompleted_DecreseStock(
-        @Payload DeliveryCompleted deliveryCompleted
+        @Payload DeliveryStarted deliveryCompleted
     ) {
-        DeliveryCompleted event = deliveryCompleted;
+        DeliveryStarted event = deliveryCompleted;
         System.out.println(
             "\n\n##### listener DecreseStock : " + deliveryCompleted + "\n\n"
         );
